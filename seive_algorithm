@@ -1,0 +1,34 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+// creating seive array
+
+long long int N=1000001;               // declare globally -> 10^6
+long long int seive[1000001];
+void gen_seive()                      // create void seive functoin
+{
+    seive[0]=seive[1]=0;             // assign 0 in 0 and 1 index
+    for(int i=2;i<=N;i++){             // now we start loop form index 2
+        seive[i]=1;                    // now we assign 1 from  2 index to 10^6 index
+    }
+    for(int i=2;i*i<=N;i++){           // it starts from index 2 and go up to 10^6--llike 2 4 6 8 10.......
+        if(seive[i]==1){                    // if value at index 2 4 6... is 1 then go to for loop
+            for(int j=i*i;j<=N;j+=i){       // tnis is for change the value indexs 2 4 6 8....
+                seive[j]=0;               // now we make 1 as 0 at indexs 2 4 6 8....
+            } 
+        }                          // 2 4 6 ... is for 1st itteration..for 2nd itteration 3 9 12  15 18..
+    }
+}
+
+/*int main() {
+	gen_seive();
+	int count=0;
+	int n ;                //  this is to find     how many prime numbers in the  given number
+    cin>>n;
+    for(int i=1;i<n;i++){
+	    if(seive[i]==1){
+	       count++;
+	    }
+    }   
+	cout<<count;
+}*/
